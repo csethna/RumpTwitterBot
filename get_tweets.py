@@ -24,7 +24,7 @@ def get_tweets():
 
 		if (difference <= 90):
 			trimmed_tweets.append(tweet)
-			log.log("Going to tweet: " tweet['text'])
+			log.log("Going to tweet: " + tweet['text'])
 
 
 	return trimmed_tweets

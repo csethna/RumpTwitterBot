@@ -12,7 +12,7 @@ def send(tweets):
 
 	for index, tweet in enumerate(tweets):
 		try:
-			api.update_with_media(images[index], "#TrollTrump")
+			api.update_with_media(images[index], "#TrollTrump @realDonaldTrump")
 		except tweepy.TweepError as e:
 			log.log(e)
 

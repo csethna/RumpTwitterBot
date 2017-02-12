@@ -8,6 +8,6 @@ def log(text):
 
 	text = str(datetime.now()) + ": " + text
 
-	log_file.write(text + " \n")
+	log_file.write(text + "\n")
 
 	log_file.close()

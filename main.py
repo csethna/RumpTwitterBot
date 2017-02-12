@@ -4,11 +4,16 @@ import tweet
 import create_image
 import get_tweets
 import clean_up_imgs
+import log
+
 
 tweets = get_tweets.get_tweets()
 
-create_image.imagify_tweet(tweets)
+if(len(tweets) > 0):
 
-tweet.send(tweets)
+	create_image.imagify_tweet(tweets)
+	tweet.send(tweets)
+	clean_up_imgs.clean()
 
-clean_up_imgs.clean()
+else:
+	log.log("No tweets to tweet :(")

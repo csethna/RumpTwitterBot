@@ -4,6 +4,7 @@ from credentials import *
 import datetime
 from datetime import datetime
 import pytz
+import log
 
 def get_tweets():
 
@@ -21,7 +22,9 @@ def get_tweets():
 		difference = (current_time - created_at).total_seconds()
 
 
-		if (difference <= 60):
+		if (difference <= 90):
 			trimmed_tweets.append(tweet)
+			log.log("Going to tweet: " tweet['text'])
+
 
 	return trimmed_tweets

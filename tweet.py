@@ -9,7 +9,6 @@ def send(tweets):
 
 	#get images that were generated
 	images = glob.glob("trump_exec_order_*")
-	print(images)
 
 	for index, tweet in enumerate(tweets):
 		try:

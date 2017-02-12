@@ -4,7 +4,7 @@ import datetime
 from datetime import datetime
 
 def log(text):
-	log_file = open("tRump.log", "w+")
+	log_file = open("tRump.log", "a+")
 
 	text = str(datetime.now()) + ": " + text
 

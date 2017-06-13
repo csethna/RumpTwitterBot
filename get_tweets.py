@@ -24,6 +24,7 @@ def get_tweets():
 		log.log(' '.join(('The tweets to check...', str(tweet['id']))))
 
 		if (difference <= 90):
+			log.log('Time difference was less than 90 seconds.')
 			with open('tweet_ids.csv', "r+") as id_file:
 				ids = csv.reader(id_file, delimiter = ',')
 				used = False
@@ -37,6 +38,6 @@ def get_tweets():
 						trimmed_tweets.append(tweet)
 						log.log("Going to tweet: " + tweet['text'])
 						id_file.write(str(tweet['id']) + ",")
-		log.log(trimmed_tweets)
+		log.log(' '.join(('Number of tweets to post:', str(len(trimmed_tweets)))))
 
 	return trimmed_tweets

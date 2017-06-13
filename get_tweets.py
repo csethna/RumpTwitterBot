@@ -22,7 +22,8 @@ def get_tweets():
 		difference = (current_time - created_at).total_seconds()
 
 		log.log(' '.join(('The tweets to check...', str(tweet['id']))))
-		log.log(str(difference))
+
+		log.log(';'.join((str(created_at), str(current_time),str(difference))))
 
 		if (difference <= 90):
 			log.log('Time difference was less than 90 seconds.')
@@ -31,6 +32,7 @@ def get_tweets():
 				used = False
 				for row in ids:
 					for field in row:
+						log.log(' '.join((str(tweet['id']), field)))
 						if str(tweet['id']) in field:
 							used = True
 							log.log(' '.join(('found used tweet ', str(tweet['id']))))

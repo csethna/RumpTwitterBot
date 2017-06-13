@@ -21,7 +21,9 @@ def get_tweets():
 		current_time = datetime.utcnow().replace(tzinfo=pytz.utc)
 		difference = (current_time - created_at).total_seconds()
 
-		if (difference <= 90):
+		log.log(' '.join(('The tweets to check...', str(tweet['id']))))
+
+		if (difference <= 90000):
 			with open('tweet_ids.csv', "r+") as id_file:
 				ids = csv.reader(id_file, delimiter = ',')
 				used = False
@@ -30,6 +32,7 @@ def get_tweets():
 						if str(tweet['id']) in field:
 							used = True
 							log.log(' '.join(('found used tweet ', str(tweet['id']))))
+					log.log(' '.join(('Already tweeted = ', str(used))))
 					if used == False:
 						trimmed_tweets.append(tweet)
 						log.log("Going to tweet: " + tweet['text'])

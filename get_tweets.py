@@ -23,7 +23,7 @@ def get_tweets():
 
 		log.log(' '.join(('The tweets to check...', str(tweet['id']))))
 
-		if (difference <= 90000):
+		if (difference <= 90):
 			with open('tweet_ids.csv', "r+") as id_file:
 				ids = csv.reader(id_file, delimiter = ',')
 				used = False

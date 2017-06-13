@@ -37,5 +37,6 @@ def get_tweets():
 						trimmed_tweets.append(tweet)
 						log.log("Going to tweet: " + tweet['text'])
 						id_file.write(str(tweet['id']) + ",")
+		log.log(trimmed_tweets)
 
 	return trimmed_tweets

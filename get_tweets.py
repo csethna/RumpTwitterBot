@@ -12,7 +12,7 @@ def get_tweets():
 	auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 	auth.set_access_token(ACCESS_TOKEN, ACCESS_SECRET)
 	api = tweepy.API(auth)
-	tweets = api.user_timeline(screen_name = 'realDonaldTrump', count=10, include_rts= True, parser=tweepy.parsers.JSONParser())
+	tweets = api.user_timeline(screen_name = 'realDonaldTrump', count=5, include_rts= True, parser=tweepy.parsers.JSONParser())
 	trimmed_tweets = []
 
 	#Check whether this tweet occurred within the last minute

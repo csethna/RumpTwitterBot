@@ -22,6 +22,7 @@ def get_tweets():
 		difference = (current_time - created_at).total_seconds()
 
 		log.log(' '.join(('The tweets to check...', str(tweet['id']))))
+		log.log(str(difference))
 
 		if (difference <= 90):
 			log.log('Time difference was less than 90 seconds.')

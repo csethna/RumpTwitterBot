@@ -12,27 +12,25 @@ def get_tweets():
 	auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 	auth.set_access_token(ACCESS_TOKEN, ACCESS_SECRET)
 	api = tweepy.API(auth)
-	tweets = api.user_timeline(screen_name = 'realDonaldTrump', count=2, include_rts= True, parser=tweepy.parsers.JSONParser())
+	tweets = api.user_timeline(screen_name = 'realDonaldTrump', count=5, include_rts= True, parser=tweepy.parsers.JSONParser())
 	trimmed_tweets = []
+	used_ids = []
 
-	#Check whether this tweet occurred within the last minute
+	with open('tweet_ids.csv', "r") as id_file:
+		reader = csv.reader(id_file, delimiter = ',')
+		used_ids = list(reader)[0]
+
 	for index, tweet in enumerate(tweets):
-		created_at = datetime.strptime(tweet['created_at'], '%a %b %d %H:%M:%S %z %Y').replace(tzinfo=pytz.utc)
-		current_time = datetime.utcnow().replace(tzinfo=pytz.utc)
-		difference = (current_time - created_at).total_seconds()
+		log.log(' '.join(('The tweets to check...', str(tweet['id']))))
+		if tweet['id_str'] not in used_ids:
+			trimmed_tweets.append(tweet)
+			log.log(' '.join(('Adding...', tweet['id_str'])))
 
-		if (difference <= 90):
-			with open('tweet_ids.csv', "r+") as id_file:
-				ids = csv.reader(id_file, delimiter = ',')
-				used = False
-				for row in ids:
-					for field in row:
-						if str(tweet['id']) in field:
-							used = True
-							log.log(' '.join(('found used tweet ', str(tweet['id']))))
-					if used == False:
-						trimmed_tweets.append(tweet)
-						log.log("Going to tweet: " + tweet['text'])
-						id_file.write(str(tweet['id']) + ",")
+	log.log(' '.join(('Number of tweets to post:', str(len(trimmed_tweets)))))
+	tweet_ids = [tweet['id_str'] for tweet in tweets]
+
+	with open('tweet_ids.csv', 'w') as myfile:
+	    wr = csv.writer(myfile, quoting=csv.QUOTE_ALL)
+	    wr.writerow(tweet_ids)
 
 	return trimmed_tweets

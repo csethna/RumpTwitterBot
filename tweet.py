@@ -12,7 +12,6 @@ def send(tweets):
 
 	for index, tweet in enumerate(tweets):
 		try:
-			log.log(' '.join(('Tweeting with image...', tweet['text'])))
-			api.update_with_media(images[index], tweet['text'])
+			api.update_with_media(images[index], "#MAGA #AmericaFirst #FakeNews @realDonaldTrump")
 		except tweepy.TweepError as e:
 			log.log(e)

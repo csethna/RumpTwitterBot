@@ -16,20 +16,17 @@ def cache_and_trim(file_name, tweets):
         log.log("No data in file. Must not have replied to anything yet. Or \
                 we have reloaded file.")
 
-    try:
-        for index, tweet in enumerate(tweets):
+    for index, tweet in enumerate(tweets):
+        try:
             log.log(' '.join(('The tweets to check...', str(tweet['id']))))
             if tweet['id_str'] not in used_ids:
                 trimmed_tweets.append(tweet)
                 log.log(' '.join(('Adding...', tweet['id_str'])))
-
-    except TypeError:
-        for index, tweet in enumerate(tweets):
+        except TypeError:
             log.log(' '.join(('The tweets to check...', str(tweet.id))))
             if tweet.id not in used_ids:
                 trimmed_tweets.append(tweet)
                 log.log(' '.join(('Adding...', str(tweet.id))))
-
 
     log.log(' '.join(('Number of tweets to post:', str(len(trimmed_tweets)))))
     tweet_ids = [tweet['id_str'] for tweet in tweets]

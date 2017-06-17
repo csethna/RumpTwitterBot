@@ -14,7 +14,7 @@ def get_tweets():
     auth.set_access_token(ACCESS_TOKEN, ACCESS_SECRET)
     api = tweepy.API(auth)
 
-	tweets = api.user_timeline(screen_name = 'realDonaldTrump', count=5, include_rts= True, parser=tweepy.parsers.JSONParser())
+    tweets = api.user_timeline(screen_name = 'realDonaldTrump', count=5, include_rts= True, parser=tweepy.parsers.JSONParser())
     trimmed_tweets = tweet_cache.cache_and_trim('tweet_ids.csv', tweets)
 
     return trimmed_tweets

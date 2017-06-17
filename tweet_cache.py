@@ -24,12 +24,16 @@ def cache_and_trim(file_name, tweets):
                 log.log(' '.join(('Adding...', tweet['id_str'])))
         except TypeError:
             log.log(' '.join(('The tweets to check...', str(tweet.id))))
-            if tweet.id not in used_ids:
+            if str(tweet.id) not in used_ids:
                 trimmed_tweets.append(tweet)
                 log.log(' '.join(('Adding...', str(tweet.id))))
 
     log.log(' '.join(('Number of tweets to post:', str(len(trimmed_tweets)))))
-    tweet_ids = [tweet['id_str'] for tweet in tweets]
+
+    try:
+        tweet_ids = [tweet['id_str'] for tweet in tweets]
+    except TypeError:
+        tweet_ids = [tweet.id for tweet in tweets]
 
     with open(file_name, 'w') as myfile:
         wr = csv.writer(myfile, quoting=csv.QUOTE_ALL)

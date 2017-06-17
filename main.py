@@ -4,6 +4,7 @@ import tweet
 import create_image
 import get_tweets
 import clean_up_imgs
+import mentions
 import log
 
 
@@ -17,3 +18,12 @@ if(len(tweets) > 0):
 
 else:
 	log.log("No tweets to tweet :(")
+
+# mentions bro
+mention_list = mentions.get()
+
+if(len(mentions) > 0):
+	mentions.reply(mention_list)
+
+else:
+	log.log("No mentions to tweet :(")

@@ -1,8 +1,8 @@
 #Getting some tweets
-import tweepy, time
+import tweepy
+import time
 from credentials import *
 import datetime
-from datetime import datetime
 import pytz
 import log
 import csv

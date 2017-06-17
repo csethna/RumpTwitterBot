@@ -20,10 +20,10 @@ else:
 	log.log("No tweets to tweet :(")
 
 # mentions bro
-mentions = mentions.get()
+mention_list = mentions.get()
 
 if(len(mentions) > 0):
-	mentions.reply(mentions)
+	mentions.reply(mention_list)
 
 else:
 	log.log("No mentions to tweet :(")

@@ -1,6 +1,4 @@
 import tweepy
-import json
-import re
 from credentials import *
 import glob
 import tweet_cache

@@ -23,12 +23,12 @@ def cache_and_trim(file_name, tweets):
                 trimmed_tweets.append(tweet)
                 log.log(' '.join(('Adding...', tweet['id_str'])))
 
-    except TypeError:    
+    except TypeError:
         for index, tweet in enumerate(tweets):
             log.log(' '.join(('The tweets to check...', str(tweet.id))))
             if tweet.id not in used_ids:
                 trimmed_tweets.append(tweet)
-                log.log(' '.join(('Adding...', tweet.id)))
+                log.log(' '.join(('Adding...', str(tweet.id))))
 
 
     log.log(' '.join(('Number of tweets to post:', str(len(trimmed_tweets)))))

@@ -21,7 +21,7 @@ for result in results:
     mention_id = result.id
     tweet_string = "@" + goofy_user + " WRONG!"
 
-mention_tweets = tweet_cache.cache_and_trim('mention_ids.csv', result)
+mention_tweets = tweet_cache.cache_and_trim('mention_ids.csv', results)
 
 for tweet in mention_tweets:
     api.update_with_media(wrong[0], tweet_string, in_reply_to_status_id = mention_id)
